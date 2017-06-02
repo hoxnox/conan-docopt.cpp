@@ -24,8 +24,7 @@ class DocoptCppConan(NxConanFile):
 
     def do_build(self):
         cmake = CMake(self)
-        cmake.build_dir = "{staging_dir}/src".format(staging_dir=self.staging_dir)
-        tools.untargz("docopt.cpp-{v}.tar.gz".format(v=self.version), cmake.build_dir)
+        tools.untargz("docopt.cpp-{v}.tar.gz".format(v=self.version))
         cmake_defs = {"CMAKE_INSTALL_PREFIX": self.package_folder, "CMAKE_INSTALL_LIBDIR": "lib"}
         cmake_defs.update(self.cmake_crt_linking_flags())
         cmake.configure(defs = cmake_defs, source_dir="docopt.cpp-{v}".format(v=self.version))

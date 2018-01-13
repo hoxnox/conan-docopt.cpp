@@ -34,4 +34,4 @@ class DocoptCppConan(NxConanFile):
         if self.settings.compiler == "Visual Studio":
             self.cpp_info.libs = ["docopt" if self.options.shared else "docopt_s"]
         else:
-            self.cpp_info.libs = ["docopt" if self.options.shared else "docopt.a"]
+            self.cpp_info.libs = ["docopt" if self.options.shared else "libdocopt.a"]

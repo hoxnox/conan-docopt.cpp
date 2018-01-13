@@ -7,12 +7,12 @@ username = os.getenv("CONAN_USERNAME", "hoxnox")
 class SnappyTestConan(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
     requires = "docopt.cpp/0.6.2@%s/%s" % (username, channel)
-    #default_options = "snappy:system=True", "snappy:root=/tmp/sss"
+    #default_options = "docopt.cpp:shared=True"
     generators = "cmake"
 
     def build(self):
-        cmake = CMake(self.settings)
-        self.run('cmake "%s" %s' % (self.conanfile_directory, cmake.command_line))
+        cmake = CMake(self)
+        self.run('cmake "%s" %s' % (self.source_folder, cmake.command_line))
         self.run("cmake --build . %s" % cmake.build_config)
 
     def imports(self):
